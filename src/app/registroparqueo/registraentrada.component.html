@@ -2,11 +2,11 @@
   <div class="card-header">{{ titulo }}</div>
   <div class="card-body">
 
-    <form  (ngSubmit)="create()">
+    <form >
       <div class="form-group row">
         <label for="fecha" class="col-form-label col-sm-2">Fecha Ingreso</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="registroParqueo.fechaIngreso" name="fecha">
+          <input type="datetime-local" class="form-control" [(ngModel)]="registroParqueo.fechaIngreso" name="fecha">
         </div>
       </div>
 

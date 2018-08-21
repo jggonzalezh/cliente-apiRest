@@ -2,7 +2,7 @@
   <div class="card-header">{{ titulo }}</div>
   <div class="card-body">
 
-    <form  >
+    <form >
       <div class="form-group row">
         <label for="fechai" class="col-form-label col-sm-2">Fecha Ingreso</label>
         <div class="col-sm-6">
@@ -13,7 +13,7 @@
       <div class="form-group row">
         <label for="fechas" class="col-form-label col-sm-2">Fecha Salida</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="registroParqueo.fechaSalida" name="fechas">
+          <input type="datetime-local" class="form-control" [(ngModel)]="registroParqueo.fechaSalida" name="fechas">
         </div>
       </div>
 

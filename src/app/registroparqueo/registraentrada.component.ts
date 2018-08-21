@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegistroParqueo } from './registroparqueo';
 import { Vehiculo } from '../vehiculo/vehiculo';
 import { RegistroParqueoService } from './registroparqueo.service';
-import {Router,ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registraentrada',
@@ -13,29 +13,18 @@ export class RegistraEntradaComponent implements OnInit {
 
 
   private registroParqueo:RegistroParqueo = new RegistroParqueo();
-
+  private vehiculo:Vehiculo=new Vehiculo();
 
   private titulo:string="Registrar Entrada";
 
   constructor(private registroParqueoService:RegistroParqueoService,
-              private router: Router,
-              private activatedRoute:ActivatedRoute
+              private router: Router
              ) {
-
+             this.registroParqueo.vehiculo=new Vehiculo();
               }
 
   ngOnInit() {
-    this.cargarRegistroParqueo()
-  }
 
-    cargarRegistroParqueo():void{
-      this.activatedRoute.params.subscribe(params =>{
-      let placa = params['placa']
-      if(placa){
-       this.registroParqueoService.getRegistroParqueo(placa).subscribe( (registroParqueo)=>this.registroParqueo =registroParqueo)
-      }
-
-      })
   }
 
   public create():void{
