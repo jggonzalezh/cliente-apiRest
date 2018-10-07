@@ -1,0 +1,45 @@
+<div class="card bg-light mb-3" >
+    <div class="card-header">Registros</div>
+    <div class="card-body">
+      <h5 class="card-title">Vehiculos Actualmente en el Parqueadero</h5>
+  
+      <table class="table table-striped" [mfData]="registros" #mf="mfDataTable" [mfRowsOnPage]="5">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">
+                <mfDefaultSorter by="name"> Placa</mfDefaultSorter>
+            </th>
+            <th scope="col">
+                <mfDefaultSorter by="tipo">Tipo</mfDefaultSorter>
+               </th>
+            <th scope="col">
+                <mfDefaultSorter by="fechaIng">Fecha Ingreso</mfDefaultSorter>
+            </th>
+            <th>
+              Registrar Salida
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let registro of mf.data" >
+            <td>{{registro.vehiculo.placa}}</td>
+            <td>{{registro.vehiculo.tipo}}</td>
+            <td>{{registro.fechaIngreso}}</td>
+            <td>
+              <button type="button" name="editar" [routerLink]="['/registroparqueo/'+registro.vehiculo.placa]" class="btn btn-light btn-sm">
+                Registrar Salida
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,40]"></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+      </table>
+    </div>
+  </div>
+  

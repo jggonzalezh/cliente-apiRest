@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { REGISTROS } from 'src/app/registroparqueo/registrosparqueo.json';
 import { RegistroParqueo } from 'src/app/registroparqueo/registroparqueo';
 import {Observable} from 'rxjs';
-import {of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -30,6 +28,11 @@ export class RegistroParqueoService {
    getRegistroParqueo(placa): Observable<RegistroParqueo>{
      return this.http.get<RegistroParqueo>(`${this.urlEndPoint}/${placa}`)
    }
+
+   getRegistroSalida(placa,estado): Observable<RegistroParqueo>{
+    return this.http.get<RegistroParqueo>(`${this.urlEndPoint}/${placa}/${estado}`)
+  }
+
 
    update(registroParqueo:RegistroParqueo): Observable<RegistroParqueo>{
      return this.http.put<RegistroParqueo>(`${this.urlEndPoint}/${registroParqueo.vehiculo.placa}`, registroParqueo, {headers: this.httpHeaders})

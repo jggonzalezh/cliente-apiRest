@@ -1,35 +1,64 @@
-<div class="card border-primary mb-3" >
-  <div class="card-header">Registros</div>
-  <div class="card-body text-primary">
-    <h5 class="card-title">Vehiculos Actualmente en el Parqueadero</h5>
-
-    <div class="my-2 text-left">
-      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/registroparqueo/registroentrada']">
-        Registrar Entrada
-      </button>
+<div class="card bg-ligh ">
+    <div class="card-header">{{ titulo }}</div>
+    <div class="card-body">
+  
+      <form >
+        <div class="form-group row">
+          <label for="fecha" class="col-form-label col-sm-2">Fecha Ingreso</label>
+          <div class="col-sm-6">
+            <input type="datetime-local" class="form-control" [(ngModel)]="registroParqueo.fechaIngreso" name="fecha">
+          </div>
+        </div>
+  
+        <div class="form-group row"   >
+            <label for="fechas" class="col-form-label col-sm-2">Fecha Salida</label>
+            <div class="col-sm-6">
+              <input type="datetime-local" class="form-control" [(ngModel)]="registroParqueo.fechaSalida" name="fechas">
+            </div>
+          </div>
+  
+        <div class="form-group row">
+          <label for="placa" class="col-form-label col-sm-2">Placa</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="registroParqueo.vehiculo.placa" name="placa">
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="tipo" class="col-form-label col-sm-2">Tipo</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="registroParqueo.vehiculo.tipo" name="tipo">
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="cilindraje" class="col-form-label col-sm-2">Cilindraje</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="registroParqueo.vehiculo.cilindraje" name="cilindraje">
+          </div>
+        </div>
+  
+        <div class="form-group row"  *ngIf="registroParqueo.valorpago" >
+            <label for="valorpago" class="col-form-label col-sm-2">valor a Pagar</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" [(ngModel)]="registroParqueo.valorpago" name="valorpago"  disabled>
+            </div>
+        </div>
+  
+  
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <button class="btn btn-light" role="button"   (click)='create()'  *ngIf="!tiporegistro else elseBlock" >Registrar Entrada</button>
+            
+            <ng-template #elseBlock>
+                <button class="btn btn-light" role="button"  (click)='update()'   >Registrar Salida</button>
+              </ng-template>
+  
+          </div>
+        </div>
+  
+      </form>
+  
     </div>
-
-    <table class="table">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">Placa</th>
-          <th scope="col">Tipo</th>
-          <th scope="col">Fecha Ingreso</th>
-          <th>Registrar Salida</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let registro of registros" >
-          <td>{{registro.vehiculo.placa}}</td>
-          <td>{{registro.vehiculo.tipo}}</td>
-          <td>{{registro.fechaIngreso}}</td>
-          <td>
-            <button type="button" name="editar" [routerLink]="['/registroparqueo/registrosalida', registro.vehiculo.placa]" class="btn btn-primary btn-sm">
-              Registrar Salida
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
-</div>
+  
